@@ -1,19 +1,8 @@
-import dotenv = require("dotenv");
-import { factory } from "./logger";
+require("dotenv").config();
 
-const log = factory.getLogger("Env");
+export const DB_ENDPOINT = process.env.DB_ENDPOINT!;
+export const DB_PASSWORD = process.env.DB_PASSWORD!;
+export const DB_USERNAME = process.env.DB_USERNAME!;
+export const DB_NAME = process.env.DB_NAME!;
 
-const _env_load = dotenv.load();
-
-if (_env_load.error) {
-    log.error("Dotenv load failed");
-}
-
-const env = _env_load.parsed!;
-
-export const DB_ENDPOINT = env.DB_ENDPOINT!;
-export const DB_PASSWORD = env.DB_PASSWORD!;
-export const DB_USERNAME = env.DB_USERNAME!;
-export const DB_NAME = env.DB_NAME!;
-
-export const WHAT3WORDS_API_KEY = env.WHAT3WORDS_API_KEY!;
+export const WHAT3WORDS_API_KEY = process.env.WHAT3WORDS_API_KEY!;
