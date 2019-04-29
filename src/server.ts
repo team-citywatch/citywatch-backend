@@ -12,7 +12,7 @@ export class ServerContext {
   private server: Server;
 
   constructor() {
-    this.app = express(); 
+    this.app = express();
     this.app.use(express.json());
     this.app.use(cors());
     this.server = createServer(this.app);
