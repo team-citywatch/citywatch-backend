@@ -5,6 +5,7 @@ import * as cors from "cors";
 import { DefaultRoute } from "./route/default";
 import { ReportRoute } from "./route/report";
 import { factory } from "./common/logger";
+import { getDatabaseInstance } from "./database";
 
 const log = factory.getLogger("ServerContext")
 
@@ -18,6 +19,7 @@ export class ServerContext {
     this.app.use(express.json());
     this.app.use(cors());
     this.server = createServer(this.app);
+    getDatabaseInstance().sync();
 
     this.registerServerRoutes();
   }
