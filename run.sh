@@ -3,4 +3,5 @@
 set -e
 
 yarn && yarn build
-docker-compose up -d
+docker-compose build
+docker-compose up -d --force-recreate
