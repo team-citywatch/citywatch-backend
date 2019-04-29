@@ -25,9 +25,9 @@
     "test": "jest --forceExit --coverage --verbose",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript, Node\" -c \"yello.bold, cyan.bold\" \"yarn run watch-ts\" \"yarn run watch-node\"",
-    "watch-ts": "tsc -w",
+    "watch-ts": "yarn build -w",
     "watch-node": "nodemon dist/index.js serve",
-    "build": "tsc"
+    "build": "tsc --skipLibCheck"
   },
   "devDependencies": {
     "@types/jest": "^23.3.1",
