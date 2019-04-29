@@ -1,0 +1,16 @@
+version: '3'
+services:
+  express:
+    build: .
+    ports:
+      - "3000:8080"
+    links:
+      - mariadb
+    volumes:
+      - ./.env:/app/.env:ro
+  mariadb:
+    image: mariadb
+    volumes:
+      - ${DB_MYSQL_HOME}:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
