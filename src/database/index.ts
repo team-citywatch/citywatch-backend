@@ -38,7 +38,7 @@ export class Database {
     Comment.sync({ alter: true });
     Report.sync({ alter: true });
     User.sync({ alter: true });
-    
+
     log.info("Sync finished");
     return this;
   }
