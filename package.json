@@ -22,7 +22,8 @@
     "sequelize": "^5.3.0",
     "sequelize-typescript": "^0.6.6",
     "ts-node": "^7.0.1",
-    "typescript-logging": "^0.6.3"
+    "typescript-logging": "^0.6.3",
+    "aws-sdk": "^2.445.0"
   },
   "scripts": {
     "start-prod": "forever dist/index.js serve",
