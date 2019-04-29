@@ -6,7 +6,6 @@ import { Comment } from "./comment.model";
 @DefaultScope({
   include: [
     {
-      // note as with the @BelongsTo Column name
       as: "comments",
       model: () => Comment,
     },
