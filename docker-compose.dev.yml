@@ -1,16 +1,22 @@
 version: '3'
 services:
   express:
-    build: .
+    build: ./backend
     ports:
       - "3000:8080"
     links:
       - mariadb
     volumes:
-      - .:/app
+      - ./backend:/app
     depends_on:
       - mariadb
     command: sh -c "yarn; yarn build; yarn watch"
+  messenger:
+    build: ./messenger
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./.env:/app/.env:ro
   mariadb:
     image: mariadb
     volumes:

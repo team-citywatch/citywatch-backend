@@ -1,7 +1,7 @@
 version: '3'
 services:
   express:
-    build: .
+    build: ./backend
     ports:
       - "3000:8080"
     links:
@@ -10,6 +10,12 @@ services:
       - ./.env:/app/.env:ro
     depends_on:
       - mariadb
+  messenger:
+    build: ./messenger
+    ports:
+      - "5000:3000"
+    volumes:
+      - ./.env:/app/.env:ro
   mariadb:
     image: mariadb
     volumes:
