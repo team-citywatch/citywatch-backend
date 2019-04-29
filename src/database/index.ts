@@ -1,9 +1,13 @@
 import * as constants from "../common/constants";
 import { Sequelize, ISequelizeConfig } from "sequelize-typescript";
 import { factory } from "../common/logger";
+
 import { Report } from "./report.model";
 import { User } from "./user.model";
 import { Comment } from "./comment.model";
+import { Tag } from "./tag.model";
+import { Image } from "./image.model";
+
 
 const log = factory.getLogger("Database");
 
@@ -26,7 +30,7 @@ export class Database {
   constructor() {
     log.info("Initialize MySQL Connection");
     this.instance = new Sequelize(Database.sequelizeConfig);
-    this.instance.addModels([Comment, Report, User]);
+    this.instance.addModels([Comment, Report, User, Tag, Image]);
   }
 
   public sync() {
@@ -36,7 +40,9 @@ export class Database {
     Comment.sync();
     Report.sync();
     User.sync();
-    
+    Image.sync();
+    Tag.sync();
+
     log.info("Sync finished");
     return this;
   }
