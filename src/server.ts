@@ -1,7 +1,9 @@
 import { createServer, Server } from "http";
 import * as express from "express";
 import * as cors from "cors";
+
 import { DefaultRoute } from "./route/default";
+import { ReportRoute } from "./route/report";
 import { factory } from "./common/logger";
 
 const log = factory.getLogger("ServerContext")
@@ -39,6 +41,7 @@ export class ServerContext {
 
   private registerServerRoutes() {
     DefaultRoute.registerServerRoute(this.app);
+    ReportRoute.registerServerRoute(this.app);
 
     this.app.get("*", (req, res) => {
       res.status(404);
