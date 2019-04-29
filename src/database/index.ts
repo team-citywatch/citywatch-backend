@@ -18,9 +18,7 @@ export class Database {
       charset: "utf8",
       collate: "utf8_general_ci",
     },
-    logging: false,
-    // For suppressing warnings
-    operatorsAliases: false,
+    logging: false
   };
 
   protected instance: Sequelize;
@@ -35,10 +33,10 @@ export class Database {
     // CAUTION
     // These instructions will be force alter the database when scheme changed.
     // If you don't want this action, change 'true' to 'false' on two lines below.
-    Comment.sync({ alter: true });
-    Report.sync({ alter: true });
-    User.sync({ alter: true });
-
+    Comment.sync();
+    Report.sync();
+    User.sync();
+    
     log.info("Sync finished");
     return this;
   }
