@@ -8,6 +8,8 @@ services:
       - mariadb
     volumes:
       - ./.env:/app/.env:ro
+    depends_on:
+      - mariadb
   mariadb:
     image: mariadb
     volumes:
