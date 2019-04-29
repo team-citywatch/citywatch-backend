@@ -118,6 +118,11 @@
   resolved "https://registry.yarnpkg.com/@types/validator/-/validator-10.11.0.tgz#aae9009ce28cc4f878e32c34d3900a81193c98d5"
   integrity sha512-i1aY7RKb6HmQIEnK0cBmUZUp1URx0riIHw/GYNoZ46Su0GWfLiDmMI8zMRmaauMnOTg2bQag0qfwcyUFC9Tn+A==
 
+"@what3words/api@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@what3words/api/-/api-3.0.2.tgz#04b2e3bd487782f546d005e55d020a1f0f468a30"
+  integrity sha512-9a1moH+eLSH+DtfphZrZyjCn/kOmASxKufcc0P066HMmXCVAUGjRiuRWPckF+CuQNF8xelOM5iTrhLDyUSMCGw==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
