@@ -1,4 +1,4 @@
-import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType } from "sequelize-typescript";
+import { Table, Model, PrimaryKey, Column, CreatedAt, AutoIncrement, ForeignKey } from "sequelize-typescript";
 import { Report } from "./report.model";
 
 @Table
