@@ -15,4 +15,5 @@ export const DB_ENDPOINT = env.DB_ENDPOINT!;
 export const DB_PASSWORD = env.DB_PASSWORD!;
 export const DB_USERNAME = env.DB_USERNAME!;
 export const DB_NAME = env.DB_NAME!;
+
 export const WHAT3WORDS_API_KEY = env.WHAT3WORDS_API_KEY!;
