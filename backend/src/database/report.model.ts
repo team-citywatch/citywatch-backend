@@ -28,7 +28,7 @@ export class Report extends Model<Report> {
 
     @ForeignKey(() => User)
     @Column
-    public reporter: number;
+    public reporter: string;
 
     @Default(0)
     @Column
