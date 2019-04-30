@@ -79,7 +79,6 @@ export class ReportRoute {
           });
         } else {
           const result :any = compileSearch(keyword);
-          let page = parseInt(req.query.page, 10) || 1;
 
           let where:any = {}
 
@@ -88,8 +87,6 @@ export class ReportRoute {
           if ('in' in result) where.lng = {[result['in'] == 'New York' ? Op.gt : Op.lt]: -114}
 
           const reports = await Report.findAll({
-              limit: REPORT_PER_PAGE * (page - 1),
-              offset: REPORT_PER_PAGE,
               where,
               include: [User]
             }
