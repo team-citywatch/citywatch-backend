@@ -6,6 +6,7 @@ import { DefaultRoute } from "./route/default";
 import { ReportRoute } from "./route/report";
 import { factory } from "./common/logger";
 import { getDatabaseInstance } from "./database";
+import { UserRoute } from "./route/user";
 
 const log = factory.getLogger("ServerContext")
 
@@ -45,6 +46,7 @@ export class ServerContext {
   private registerServerRoutes() {
     DefaultRoute.registerServerRoute(this.app);
     ReportRoute.registerServerRoute(this.app);
+    UserRoute.registerServerRoute(this.app);
 
     this.app.get("*", (req, res) => {
       res.status(404);
