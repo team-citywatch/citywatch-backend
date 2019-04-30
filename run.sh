@@ -6,6 +6,6 @@ cd backend
 yarn && yarn build
 cd ..
 
-cp backend/.env ./.env
+cp ./.env backend/.env
 docker-compose build
 docker-compose up -d --force-recreate
