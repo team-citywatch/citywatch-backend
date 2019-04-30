@@ -1,5 +1,5 @@
 import * as express from "express";
-import { User } from "src/database/user.model";
+import { User } from "../database/user.model";
 
 export class UserRoute {
   public static registerServerRoute(app: express.Application) {
