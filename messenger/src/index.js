@@ -203,7 +203,7 @@ function issues(category) {
     } else if (category == 'environment') {
         return utils.environment_issues
     } else if (category == 'all') {
-        return elements(utils.environment_issues).concat(elements(utils.services_issues)).concat(elements(utils.public_safety_issues)).concat(elements(utils.public_safety_issues))
+        return elements(utils.environment_issues).concat(elements(utils.services_issues)).concat(elements(utils.public_safety_issues)).concat(elements(utils.transport_issues))
     } else {
         return null
     }

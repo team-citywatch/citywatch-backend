@@ -15,7 +15,9 @@ services:
     ports:
       - "5000:3000"
     volumes:
-      - ./.env:/app/.env:ro
+      - ./messenger/.env:/app/.env:ro
+    links:
+      - express
   mariadb:
     image: mariadb
     volumes:
