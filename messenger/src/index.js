@@ -66,10 +66,11 @@ function handleMessage(sender_psid, received_message) {
 
     // Check if the message contains text
     console.log(received_message.text);
-    console.log(elements(utils.city_watch_issues), received_message.text.toLowerCase());
+    console.log(received_message.text && elements(utils.city_watch_issues).includes(received_message.text.toLowerCase()));
     if (received_message.text && received_message.text.toLowerCase() == "start") {
         response = start_response
     } else if (received_message.text && elements(utils.city_watch_issues).includes(received_message.text.toLowerCase())) {
+        console.log("Passing " + received_message.text + " to general issues");
         response = {
             "attachment": {
                 "type": "template",
