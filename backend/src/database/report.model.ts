@@ -1,6 +1,14 @@
-import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, BelongsTo } from "sequelize-typescript";
+import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, BelongsTo, DefaultScope } from "sequelize-typescript";
 import { User } from "./user.model";
 
+@DefaultScope({
+  include: [
+    {
+      as: "user",
+      model: () => User,
+    },
+  ]
+})
 @Table
 export class Report extends Model<Report> {
     @PrimaryKey
