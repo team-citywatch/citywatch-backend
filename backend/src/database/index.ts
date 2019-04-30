@@ -4,8 +4,6 @@ import { factory } from "../common/logger";
 
 import { Report } from "./report.model";
 import { User } from "./user.model";
-import { Comment } from "./comment.model";
-import { Tag } from "./tag.model";
 
 
 const log = factory.getLogger("Database");
@@ -29,17 +27,15 @@ export class Database {
   constructor() {
     log.info("Initialize MySQL Connection");
     this.instance = new Sequelize(Database.sequelizeConfig);
-    this.instance.addModels([Comment, Report, User, Tag]);
+    this.instance.addModels([Report, User]);
   }
 
   public sync() {
     // CAUTION
     // These instructions will be force alter the database when scheme changed.
     // If you don't want this action, change 'true' to 'false' on two lines below.
-    Comment.sync();
     Report.sync();
     User.sync();
-    Tag.sync();
 
     log.info("Sync finished");
     return this;

@@ -1,32 +1,25 @@
-import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement } from "sequelize-typescript";
+import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt } from "sequelize-typescript";
 
 @Table
 export class User extends Model<User> {
     @PrimaryKey
-    @AutoIncrement
     @Column
-    public id: number;
+    public psid: string;
 
     @Column
-    public name: string;
+    public firstName: string;
+
+    @Column
+    public lastName: string;
 
     @Column
     public email: string;
 
     @Column
+    public phoneNumber: string;
+
+    @Column
     public profileImageLink: string;
-
-    @Column
-    public accessToken: string;
-
-    @Column
-    public userType: number;
-
-    /**
-     * What3Words
-     */
-    @Column
-    public defaultLocation: string;
 
     /**
      * Timestamps

@@ -1,15 +1,6 @@
-import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, HasMany, DefaultScope } from "sequelize-typescript";
+import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, HasOne } from "sequelize-typescript";
 import { User } from "./user.model";
-import { Comment } from "./comment.model";
 
-@DefaultScope({
-  include: [
-    {
-      as: "comments",
-      model: () => Comment,
-    },
-  ]
-})
 @Table
 export class Report extends Model<Report> {
     @PrimaryKey
@@ -22,6 +13,9 @@ export class Report extends Model<Report> {
 
     @Column
     public image: string;
+
+    @Column
+    public tag: string;
 
     @Column
     public location: string;
@@ -54,6 +48,6 @@ export class Report extends Model<Report> {
     /**
      * Associations
      */
-    @HasMany(() => Comment)
-    public comments: Comment[];
+    @HasOne(() => User)
+    public user: User;
 }
