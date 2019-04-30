@@ -25,8 +25,7 @@ export class ReportRoute {
               content: {
                 [Op.like]: keyword
               }
-            },
-            include: [User]
+            }
           }
         );
 
