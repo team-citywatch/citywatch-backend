@@ -7,8 +7,6 @@ import { User } from "../database/user.model";
 
 const upload = multer({ dest: '../uploads/' });
 
-const REPORT_PER_PAGE = 10;
-
 const parseDate = (value: string[]) => {
   const MAP_MONTH = ["January", "Feburary", "March", "April", "May", "June", "July", "September", "October", "November", "December"];
   const [month, day, year] = value;
