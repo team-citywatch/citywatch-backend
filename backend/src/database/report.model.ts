@@ -1,4 +1,4 @@
-import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, HasOne } from "sequelize-typescript";
+import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, BelongsTo } from "sequelize-typescript";
 import { User } from "./user.model";
 
 @Table
@@ -48,6 +48,6 @@ export class Report extends Model<Report> {
     /**
      * Associations
      */
-    @HasOne(() => User)
+    @BelongsTo(() => User)
     public user: User;
 }
