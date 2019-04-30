@@ -60,32 +60,45 @@ const compileSearch = (value: string) => {
   return result;
 }
 
+console.log(compileSearch("Noise"));
+
 export class ReportRoute {
   public static registerServerRoute(app: express.Application) {
     app.get("/report/", async (req, res) => {
       // for fetch report
       try {
         const keyword = req.query.keyword;
-        const result:any = compileSearch(keyword);
-        let page = parseInt(req.query.page, 10) || 1;
+        if (!keyword) {
+          const reports = await Report.findAll({
+              include: [User]
+            }
+          );
 
-        let where:any = {}
+          res.send({
+            reports
+          });
+        } else {
+          const result :any = compileSearch(keyword);
+          let page = parseInt(req.query.page, 10) || 1;
 
-        if ('category' in result) where.tag = {[Op.like]: `%${result.category}%`}
-        if ('since' in result && 'before' in result) where.createdAt = {[Op.between]: [result.since, result.before]}
-        if ('in' in result) where.lng = {[result['in'] == 'New York' ? Op.gt : Op.lt]: -114}
+          let where:any = {}
 
-        const reports = await Report.findAll({
-            limit: REPORT_PER_PAGE * (page - 1),
-            offset: REPORT_PER_PAGE,
-            where,
-            include: [User]
-          }
-        );
+          if ('category' in result) where.tag = {[Op.like]: `%${result.category}%`}
+          if ('since' in result && 'before' in result) where.createdAt = {[Op.between]: [result.since, result.before]}
+          if ('in' in result) where.lng = {[result['in'] == 'New York' ? Op.gt : Op.lt]: -114}
 
-        res.send({
-          reports
-        });
+          const reports = await Report.findAll({
+              limit: REPORT_PER_PAGE * (page - 1),
+              offset: REPORT_PER_PAGE,
+              where,
+              include: [User]
+            }
+          );
+
+          res.send({
+            reports
+          });
+        }
       } catch (reason) {
         res.status(500);
         res.send({ message: `database error: ${reason}` });
