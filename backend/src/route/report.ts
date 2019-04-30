@@ -3,6 +3,7 @@ import * as multer from "multer";
 import { Op } from "sequelize";
 import { Report } from "../database/report.model";
 import { getS3Instance } from "../common/s3";
+import { User } from "src/database/user.model";
 
 const upload = multer({ dest: '../uploads/' });
 
@@ -24,7 +25,8 @@ export class ReportRoute {
               content: {
                 [Op.like]: keyword
               }
-            }
+            },
+            include: [User]
           }
         );
 
