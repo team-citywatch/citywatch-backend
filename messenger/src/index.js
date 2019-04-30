@@ -1,6 +1,7 @@
 // @flow
 'use strict';
 const utils = require("./utils");
+const session = require("./session")();
 require("dotenv").config();
 
 // Imports dependencies and set up http server
@@ -9,7 +10,8 @@ const
     bodyParser = require('body-parser'),
     app = express().use(bodyParser.json()), // creates express http server
     PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN,
-    request = require('request');
+    request = require('request'),
+    axios = require('axios');
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 3000, () => console.log('Webhook is listening'));
@@ -68,6 +70,9 @@ function handleMessage(sender_psid, received_message) {
     console.log(received_message.text)
     if (received_message.text && received_message.text.toLowerCase() == "start") {
         response = start_response
+
+        // get user or create user
+
     } else if (received_message.text && elements(utils.city_watch_issues).includes(received_message.text.toLowerCase())) {
         response = {
             "attachment": {
@@ -107,6 +112,29 @@ function handleMessage(sender_psid, received_message) {
             }
         }
     } else if (received_message.attachments[0].type == 'location') {
+
+        // location
+        let obj = session.get(sender_psid);
+        obj.location = {
+            'lat': received_message.attachments[0].payload.lat,
+            'lng': received_message.attachments[0].payload.lng
+        }
+        session.put(sender_psid, obj);
+
+        // Make a request for a user with a given ID
+        axios.post('http://f8-citywatch-front.s3-website-us-west-2.amazonaws.com/report')
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
+
         response = { "text": "We're done here. Thanks!" }
 
         // Check if there's something similar in that location
@@ -128,6 +156,9 @@ function handlePostback(sender_psid, received_postback) {
         response = { "text": "Thanks!" }
     } else if (payload === 'getting_started') {
         response = start_response
+
+        // get user or create user
+
     } else if (payload === 'upload') {
         response = { "text": "Please upload the image" }
     } else if (issues('all').includes(payload)) {
@@ -144,6 +175,12 @@ function handlePostback(sender_psid, received_postback) {
                 }
             }
         }
+
+        // Sub category
+        let obj = session.get(sender_psid);
+        obj.category = payload;
+        session.put(sender_psid, obj);
+
     } else if (payload === 'no_image' || payload === 'yes_image') {
         response = {
             "text": image_message(payload),
