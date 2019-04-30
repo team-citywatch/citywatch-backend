@@ -2,9 +2,9 @@ import * as express from "express";
 import * as multer from "multer";
 import { Op } from "sequelize";
 import { Report } from "../database/report.model";
-import { getS3Instance } from "src/common/s3";
+import { getS3Instance } from "../common/s3";
 
-const upload = multer({ dest: '/uploads/' });
+const upload = multer({ dest: '../uploads/' });
 
 const REPORT_PER_PAGE = 10;
 
