@@ -6,7 +6,6 @@ import { Report } from "./report.model";
 import { User } from "./user.model";
 import { Comment } from "./comment.model";
 import { Tag } from "./tag.model";
-import { Image } from "./image.model";
 
 
 const log = factory.getLogger("Database");
@@ -30,7 +29,7 @@ export class Database {
   constructor() {
     log.info("Initialize MySQL Connection");
     this.instance = new Sequelize(Database.sequelizeConfig);
-    this.instance.addModels([Comment, Report, User, Tag, Image]);
+    this.instance.addModels([Comment, Report, User, Tag]);
   }
 
   public sync() {
@@ -40,7 +39,6 @@ export class Database {
     Comment.sync();
     Report.sync();
     User.sync();
-    Image.sync();
     Tag.sync();
 
     log.info("Sync finished");

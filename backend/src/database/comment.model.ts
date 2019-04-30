@@ -1,6 +1,5 @@
 import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType } from "sequelize-typescript";
 import { User } from "./user.model";
-import { Image } from "./image.model";
 import { Report } from "./report.model";
 
 @Table
@@ -17,9 +16,8 @@ export class Comment extends Model<Comment> {
     @Column(DataType.TEXT)
     public content: string;
 
-    @ForeignKey(() => Image)
     @Column
-    public image: number;
+    public image: string;
 
     @ForeignKey(() => Report)
     @Column

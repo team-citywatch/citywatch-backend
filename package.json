@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.445.0",
+    "image-thumbnail": "^1.0.2"
+  }
+}

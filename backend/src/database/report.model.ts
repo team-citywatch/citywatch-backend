@@ -1,6 +1,5 @@
-import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, HasMany, DefaultScope } from "sequelize-typescript";
+import { Table, Model, PrimaryKey, Column, CreatedAt, UpdatedAt, AutoIncrement, ForeignKey, DataType, Default, HasMany, DefaultScope, HasOne } from "sequelize-typescript";
 import { User } from "./user.model";
-import { Image } from "./image.model";
 import { Comment } from "./comment.model";
 
 @DefaultScope({
@@ -21,9 +20,8 @@ export class Report extends Model<Report> {
     @Column(DataType.TEXT)
     public content: string;
 
-    @ForeignKey(() => Image)
     @Column
-    public image: number;
+    public image: string;
 
     @Column
     public location: string;

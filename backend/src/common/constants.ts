@@ -10,3 +10,6 @@ export const WHAT3WORDS_API_KEY = process.env.WHAT3WORDS_API_KEY!;
 export const FACEBOOK_APP_ID = process.env.FACEBOOK_APP_ID!;
 export const FACEBOOK_APP_SECRET = process.env.FACEBOOK_SECRET_KEY!;
 export const FACEBOOK_CALLBACK_URL = process.env.FACEBOOK_CALLBACK_URL!;
+
+export const AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY!;
+export const AWS_SECRET_KEY = process.env.AWS_SECRET_KEY!;

@@ -1,7 +1,10 @@
 import * as express from "express";
+import * as multer from "multer";
 import { Op } from "sequelize";
-
 import { Report } from "../database/report.model";
+import { getS3Instance } from "src/common/s3";
+
+const upload = multer({ dest: '/uploads/' });
 
 const REPORT_PER_PAGE = 10;
 
@@ -105,16 +108,38 @@ export class ReportRoute {
       }
     });
 
-    app.delete("/report/:report/image", (_, res) => {
+    app.delete("/report/:report/image", (req, res) => {
       // for delete an image in report
       res.status(501);
       res.send("Not Implemented");
     });
 
-    app.post("/report/:report/image", (_, res) => {
+    app.post("/report/:report/image", upload.single('image'), async (req, res) => {
       // for update an image in report
-      res.status(501);
-      res.send("Not Implemented");
+      const reportId = req.params.report;
+      try {
+        const report = await Report.findOne({
+          where: {
+            id: reportId
+          }
+        });
+
+        if (report) {
+          getS3Instance().putImage(req.file.filename, req.file);
+          let patch = {
+            image: req.file.filename
+          }
+          await report.update(patch);
+          res.send(200);
+          res.send({ message: "success" });
+        } else {
+          res.status(400);
+          res.send({ message: `Report ${reportId} does not exist` });
+        }
+      } catch (reason) {
+        res.status(500);
+        res.send({ message: `database error: ${reason}` });
+      }
     });
   }
 }
